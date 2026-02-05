@@ -1,0 +1,10 @@
+#
+# Rust macros
+#
+
+%rust_install_crate \
+  %__install -d %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version} \
+  %__cp -a . %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version}/ \
+  %__rm -f %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version}/*checksum.json \
+  echo '{"files":{},"package":null}' > %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version}/.cargo-checksum.json \
+%{nil}

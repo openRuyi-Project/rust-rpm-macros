@@ -5,9 +5,6 @@
 %buildsystem_rustcrates_conf() %nil
 %buildsystem_rustcrates_build() %nil
 %buildsystem_rustcrates_install() %{expand:\\\
-  %__install -d %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version} ; \\\
-  %__cp -a . %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version}/ ; \\\
-  %__rm -f %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version}/*checksum.json ; \\\
-  echo '{"files":{},"package":null}' > %{buildroot}%{_datadir}/cargo/registry/%{crate_name}-%{version}/.cargo-checksum.json \\\
+  %{rust_install_crate} \\\
 }
 %buildsystem_rustcrates_check() %nil
