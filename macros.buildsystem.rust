@@ -1,0 +1,20 @@
+
+# Example buildsystem for rust crates
+%buildsystem_rust_prep() %{expand:\
+  %autosetup -C -p1 %* \
+  mkdir -p ~/.cargo \
+  cat > ~/.cargo/config.toml <<EOF\
+[source.crates-io]\
+replace-with = "system-registry"\
+\
+[source.system-registry]\
+directory = "/usr/share/cargo/registry"\
+EOF\
+  rm -rf Cargo.lock \
+}
+%buildsystem_rust_conf() %nil
+%buildsystem_rust_build() %{expand:\
+  cargo build --release \
+}
+%buildsystem_rust_install() %nil
+%buildsystem_rust_check() %nil
