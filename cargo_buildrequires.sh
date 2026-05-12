@@ -147,7 +147,7 @@ while IFS="$(printf '\t')" read -r crate_name crate_version source; do
         done
     fi
 
-    normalized_name=$(printf '%s' "$crate_name" | tr '_' '-')
+    normalized_name=$(printf '%s' "$crate_name")
     clean_ver=$(clean_version "$crate_version")
     dep_full="crate($normalized_name) >= $clean_ver"
 
